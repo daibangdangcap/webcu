@@ -1,0 +1,37 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<WebTech.Models.PRODUCT>
+
+@{
+    ViewBag.Title = "ProductList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<div class="container">
+    <div class="row">
+        @foreach (var pro in Model)
+        {
+            <div class="col-sm-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="card-pro">
+                    <img src="~/Images/@pro.IMAGE" width="200" height="200" />
+                    <p>@Html.DisplayFor(model => pro.NAME_PRO)</p>
+                    <p>Đơn giá: <font color="red">@Html.DisplayFor(model => pro.PRICE)</font></p>
+                    <p style="text-align:center">
+                        <a class="btn btn-info" href="@Url.Action("Details","PRODUCTs",new { id=pro.ID_PRO})">Chi tiết</a>
+                        <input type="submit" value="Mua" class="btn btn-danger" />
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<!-- Thêm đoạn mã để hiển thị số trang và số trang hiện tại -->
+<div id="container" style="margin-left: 90px">
+    <p></p>
+    <p></p>
+    <div class="pagination" style="margin-left: 400px;">
+        <p style="text-align:center; ">Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount</p>
+        @Html.PagedListPager(Model, page => Url.Action("ProductList_crumb", new { page, SearchString = Session["NAMECATE"], @class = "paging" }))
+    </div>
+</div>
+<!-- Kết thúc -->

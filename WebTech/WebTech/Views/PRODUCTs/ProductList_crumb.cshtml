@@ -1,0 +1,92 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<WebTech.Models.PRODUCT>
+@{
+    ViewBag.Title = "ProductList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link href="~/MyCss/Crumb.css" type="text/css" rel="stylesheet" />
+<div class="crumb">
+    <ul>
+        <li>
+
+            <a href="@Url.Action("TrangChu","Home")">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                    <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z" />
+                </svg> Trang chủ
+            </a>
+
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+            </svg>
+            <a href="@Url.Action("Productlist_crumb","PRODUCTs",new { SearchString=Session["NAMECATE"]})">@Session["NAMECATE"]</a>
+        </li>
+    </ul>
+</div>
+<div>
+    <div class="row">
+        @foreach (var pro in Model)
+        {
+            <div class="col-sm-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="card-pro">
+                    <a href="@Url.Action("detailPro","PRODUCTs",new { id=pro.NAME_PRO })"><img src="~/Images/@pro.IMAGE" height="235" style="display: block; margin-left: auto; margin-right: auto; width: 90%; margin-top:20px;" /></a>
+                    <p style="text-align:center; margin-top:10px;color:black; font-size:large;"> <b>@Html.DisplayFor(model => pro.NAME_PRO)</b></p>
+                    <p style="margin-left:10px; font-size: larger; text-align:center;"> <strong> Giá: <font color="red">@pro.PRICE.ToString("#,##0").Replace(',', '.')<sup><u>đ</u></sup></font></strong> </p>
+                </div>
+            </div>
+            <br /><br /><br /><br /><br />
+        }
+    </div>
+    <style>
+        .card-pro {
+            justify-content: center;
+            border-radius: 15px;]
+            list-style: none;
+            margin-right: 40px;
+            border: 3px solid #f3f3f3;
+            box-shadow: 0px 5px 4px rgb(117, 116, 116);
+        }
+    </style>
+</div>
+
+<br />
+<br />
+<style>
+    .pagination {
+        display: inline-block;
+        padding: 0;
+        margin:0;
+    }
+
+    .pagination li {
+        display: inline;
+    }
+
+        .pagination li a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+        }
+
+            .pagination li a.active {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+            .pagination li a:hover:not(.active) {
+                background-color: #ddd;
+            }
+</style>
+<!-- Thêm đoạn mã để hiển thị số trang và số trang hiện tại -->
+<div id="container" style="margin-left: 90px">
+    <p></p>
+    <p></p>
+    <div class="pagination" style="margin-left: 400px;">
+        <p style="text-align:center; ">Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount</p>
+        @Html.PagedListPager(Model, page => Url.Action("ProductList_crumb", new { page, SearchString = Session["NAMECATE"] ,@class="paging"}))
+    </div>
+</div>

@@ -1,0 +1,76 @@
+﻿@model WebTech.Models.CUSTOMER
+
+@{
+    ViewBag.Title = "Edit_cus";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h1>THÔNG TIN KHÁCH HÀNG</h1>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        HÌNH ẢNH
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.IMAGE, null, new { type = "file", @class = "form-control" })
+            <img src="~/Images/@Model.IMAGE" width="200" height="200" />
+            @Html.ValidationMessageFor(model => model.IMAGE, "", new { @class = "text-danger" })
+        </div>
+    </div>
+        <div class="form-group">
+            TÊN KHÁCH HÀNG
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NAME_CUS, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NAME_CUS, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+          EMAIL
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            ĐỊA CHỈ
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ADDRESS, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ADDRESS, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+           SỐ ĐIỆN THOẠI
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.USERNAME)
+
+        <div class="form-group">
+            MẬT KHẨU
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PASSWORD, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Informs", new { inform = Model.USERNAME })
+</div>

@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBTechModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ADMINUSER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USER_AD" Type="char" MaxLength="30" Nullable="false" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="30" />
+    <Property Name="PASSWORD_AD" Type="char" MaxLength="50" />
+    <Property Name="ROLLUSER" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="CATEGORY">
+    <Key>
+      <PropertyRef Name="NAME_CATE" />
+    </Key>
+    <Property Name="NAME_CATE" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CUSTOMER">
+    <Key>
+      <PropertyRef Name="USERNAME" />
+    </Key>
+    <Property Name="NAME_CUS" Type="nvarchar" MaxLength="30" />
+    <Property Name="EMAIL" Type="nvarchar" MaxLength="50" />
+    <Property Name="ADDRESS" Type="nvarchar" MaxLength="50" />
+    <Property Name="SDT" Type="char" MaxLength="10" />
+    <Property Name="USERNAME" Type="char" MaxLength="30" Nullable="false" />
+    <Property Name="PASSWORD" Type="char" MaxLength="50" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IMAGE" Type="char" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="DETAILS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_PRO" Type="char" MaxLength="10" />
+    <Property Name="NAME_CATE" Type="nvarchar" MaxLength="30" />
+    <Property Name="HEDIEUHANH" Type="char" MaxLength="15" />
+    <Property Name="SIZE" Type="char" MaxLength="15" />
+    <Property Name="WEIGHT" Type="char" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="ORDERDETAIL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDProduct" Type="char" MaxLength="10" />
+    <Property Name="IDOrder" Type="int" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="UnitPrice" Type="float" />
+  </EntityType>
+  <EntityType Name="ORDERPRO">
+    <Key>
+      <PropertyRef Name="ID_ORDER" />
+    </Key>
+    <Property Name="ID_ORDER" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USERNAME" Type="char" MaxLength="30" />
+    <Property Name="SDT" Type="char" MaxLength="10" />
+    <Property Name="ORDER_ADDRESS" Type="nvarchar" MaxLength="50" />
+    <Property Name="DATEORDER" Type="date" />
+    <Property Name="NAMECUSTOMER" Type="nvarchar" MaxLength="50" />
+    <Property Name="PRICE" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="PRODUCT">
+    <Key>
+      <PropertyRef Name="ID_PRO" />
+    </Key>
+    <Property Name="ID_PRO" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="NAME_PRO" Type="nvarchar" MaxLength="50" />
+    <Property Name="IMAGE" Type="char" MaxLength="10" />
+    <Property Name="NAME_CATE" Type="nvarchar" MaxLength="30" />
+    <Property Name="PRICE" Type="int" Nullable="false" />
+    <Property Name="QUANTITY" Type="int" />
+    <Property Name="IMAGEL" Type="char" MaxLength="10" />
+    <Property Name="IMAGER" Type="char" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="ROLEUSER">
+    <Key>
+      <PropertyRef Name="ROLE" />
+    </Key>
+    <Property Name="ROLE" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__ORDERDETA__IDOrd__4D94879B">
+    <End Role="ORDERPRO" Type="Self.ORDERPRO" Multiplicity="0..1" />
+    <End Role="ORDERDETAIL" Type="Self.ORDERDETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORDERPRO">
+        <PropertyRef Name="ID_ORDER" />
+      </Principal>
+      <Dependent Role="ORDERDETAIL">
+        <PropertyRef Name="IDOrder" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CATE">
+    <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="0..1" />
+    <End Role="DETAILS" Type="Self.DETAILS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORY">
+        <PropertyRef Name="NAME_CATE" />
+      </Principal>
+      <Dependent Role="DETAILS">
+        <PropertyRef Name="NAME_CATE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ID_PRO">
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="0..1" />
+    <End Role="DETAILS" Type="Self.DETAILS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="ID_PRO" />
+      </Principal>
+      <Dependent Role="DETAILS">
+        <PropertyRef Name="ID_PRO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OR_CUS">
+    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="0..1" />
+    <End Role="ORDERPRO" Type="Self.ORDERPRO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="USERNAME" />
+      </Principal>
+      <Dependent Role="ORDERPRO">
+        <PropertyRef Name="USERNAME" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OR_PRO">
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="0..1" />
+    <End Role="ORDERDETAIL" Type="Self.ORDERDETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="ID_PRO" />
+      </Principal>
+      <Dependent Role="ORDERDETAIL">
+        <PropertyRef Name="IDProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pro_Category">
+    <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="0..1" />
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORY">
+        <PropertyRef Name="NAME_CATE" />
+      </Principal>
+      <Dependent Role="PRODUCT">
+        <PropertyRef Name="NAME_CATE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ROLE_AD">
+    <End Role="ROLEUSER" Type="Self.ROLEUSER" Multiplicity="0..1" />
+    <End Role="ADMINUSER" Type="Self.ADMINUSER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROLEUSER">
+        <PropertyRef Name="ROLE" />
+      </Principal>
+      <Dependent Role="ADMINUSER">
+        <PropertyRef Name="ROLLUSER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBTechModelStoreContainer">
+    <EntitySet Name="ADMINUSER" EntityType="Self.ADMINUSER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CUSTOMER" EntityType="Self.CUSTOMER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DETAILS" EntityType="Self.DETAILS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORDERDETAIL" EntityType="Self.ORDERDETAIL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORDERPRO" EntityType="Self.ORDERPRO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ROLEUSER" EntityType="Self.ROLEUSER" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__ORDERDETA__IDOrd__4D94879B" Association="Self.FK__ORDERDETA__IDOrd__4D94879B">
+      <End Role="ORDERPRO" EntitySet="ORDERPRO" />
+      <End Role="ORDERDETAIL" EntitySet="ORDERDETAIL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CATE" Association="Self.FK_CATE">
+      <End Role="CATEGORY" EntitySet="CATEGORY" />
+      <End Role="DETAILS" EntitySet="DETAILS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ID_PRO" Association="Self.FK_ID_PRO">
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+      <End Role="DETAILS" EntitySet="DETAILS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OR_CUS" Association="Self.FK_OR_CUS">
+      <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+      <End Role="ORDERPRO" EntitySet="ORDERPRO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OR_PRO" Association="Self.FK_OR_PRO">
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+      <End Role="ORDERDETAIL" EntitySet="ORDERDETAIL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pro_Category" Association="Self.FK_Pro_Category">
+      <End Role="CATEGORY" EntitySet="CATEGORY" />
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ROLE_AD" Association="Self.FK_ROLE_AD">
+      <End Role="ROLEUSER" EntitySet="ROLEUSER" />
+      <End Role="ADMINUSER" EntitySet="ADMINUSER" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,15 @@
+﻿.crumb {
+    height: 40px;
+}
+
+    .crumb li {
+        list-style: none;
+        float: left;
+        color: darkgrey;
+    }
+
+    .crumb a {
+        text-decoration: none;
+        color: darkgrey;
+        padding-right: 10px;
+    }

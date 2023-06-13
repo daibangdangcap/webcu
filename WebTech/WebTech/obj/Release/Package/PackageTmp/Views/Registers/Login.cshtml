@@ -1,0 +1,68 @@
+﻿@model WebTech.Models.Login
+
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/MyCss/app.css">
+    <link rel="stylesheet" href="~/MyCss/reset.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <title>Zone14 | Đăng Nhập</title>
+</head>
+
+<body>
+    <style>
+        .text {
+            background: transparent;
+            border: 0;
+            outline: 0;
+            color: #111010;
+            flex-grow: 1;
+        }
+    </style>
+
+    <div id="wrapper">
+        
+        <div id="form-login">
+            @using (Html.BeginForm("Login", "Registers", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <a href="@Url.Action("TrangChu","Home")" style="color: black;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16" style="float: right;">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                    </svg>
+                </a>
+                <h1 class="form-heading"><img src="~/Image2/LOGO - TRẮNG.png" height="150px" width="150px" alt=""></h1>
+
+                <div class="form-group">
+                    <i class="far fa-user"></i>
+                    @Html.TextBoxFor(m => m.USERNAME, "", new { @class = "text", @placeholder = "Tên đăng nhập" })
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-key"></i>
+                    @Html.TextBoxFor(m => m.PASSWORD, "", new { @class = "text", @placeholder = "Mật khẩu", @type = "password" })
+                </div>
+                <input type="submit" value="Đăng Nhập" class="form-submit">
+                @Html.ValidationSummary();
+                <p>Chưa có tài khoản? Đăng ký <a href="@Url.Action("Register","Registers")">tại đây</a></p>
+            }
+            </div>
+        
+        </div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="app.js"></script>
+</html>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<WebTech.Models.DETAIL>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<link href="~/MyCss/Admin.css" rel="stylesheet" type="text/css" />
+
+<div class="afheader">
+    <button><a href="@Url.Action("Create","DETAILs")" style="text-decoration: none; color: aliceblue;">THÊM CHI TIẾT SP</a></button>
+    <p>  CHI TIẾT SẢN PHẨM</p>
+</div>
+<div class="mid">
+    <table class="table">
+        <tr>
+            <th>
+                Mã sản phẩm
+            </th>
+            <th>
+                Tên sản phẩm
+            </th>
+            <th>
+                Loại sản phẩm
+            </th>
+            <th>
+                Hệ điều hành
+            </th>
+            <th>
+                Kích cỡ
+            </th>
+            <th>
+                Trọng lượng
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID_PRO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PRODUCT.NAME_PRO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CATEGORY.NAME_CATE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HEDIEUHANH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SIZE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WEIGHT)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

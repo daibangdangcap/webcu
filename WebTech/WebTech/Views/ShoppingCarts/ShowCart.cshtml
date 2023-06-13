@@ -1,0 +1,96 @@
+﻿@model WebTech.Models.Cart
+
+@{
+    ViewBag.Title = "ShowCart";
+    Layout = null;
+}
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<!--BOOTSTRAP-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
+<script src="js/jquery-3.5.1.min.js"></script>
+
+<!-- CSS-->
+<link href="~/MyCss/DonHang.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+@if (Model != null)
+{
+<div box="container">
+    <div class="thongtin">
+        <p style="font-size:30px;">  ZONE 14.COM </p>
+        <a href="#">   Giỏ hàng > Thông tin giao hàng </a>
+        <div class="header"><strong> THÔNG TIN GIAO HÀNG</strong></div>
+        <img src="~/AnhDD/@Session["IMAGE"]" style="width:50px;">
+
+        <span style="margin-left:-5px">@Session["NAME_CUS"] (@Session["USERNAME"])</span>
+
+        @using (Html.BeginForm("CheckOut", "ShoppingCarts", new { @class = "thongtin", username = Session["USERNAME"] }))
+
+        {
+
+            <input type="text" name="NameCustomer" placeholder="Tên người nhận" required />
+
+            <input type="text" name="AddressDeliverry" placeholder="Địa chỉ giao hàng" required />
+
+            <input type="text" name="SDTCustomer" placeholder="Nhập SĐT" required />
+            <br />
+            <a href="@Url.Action("ProductList_crumb", "PRODUCTs")">Tiếp tục mua hàng</a>
+            <input style=" background-color:rgb(0,0,0); color:white;border-radius:10px;" type="submit" value="Thanh toán" class="button" />
+        }
+        <br /><br /><br />
+    </div>
+    <div class="donhang">
+        <div class="header">
+            <strong style=" font-size: 25px; padding-top: 20px; padding-bottom: 20px;">THÔNG TIN ĐƠN HÀNG</strong>
+            <table class="table-bordered" style="text-align:center;">
+                <tr>
+                    <th>Sản phẩm</th>
+                    <th style="width:200px;">Tên sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Giá tiền</th>
+                    <th>Thành tiền</th>
+                </tr>
+                @foreach (var item in Model.Items)
+                {
+                    decimal total = item._quantity * (decimal)item._product.PRICE;
+                    decimal onepro = item._quantity * (decimal)item._product.PRICE;
+
+                    <tr>
+                        <td><img src="~/Images/@item._product.IMAGE" width="70px" /></td>
+                        <td>@item._product.NAME_PRO</td>
+                        <td>
+                            @using (Html.BeginForm("Update_Cart_Quantity", "ShoppingCarts", new { @class = "price" }))
+                            {
+                                <input type="hidden" value="@item._product.ID_PRO" name="idPro" />
+                                <input type="number" value="@item._quantity" name="carQuantity" style="text-align:right; width:50%;" />
+                                <input type="submit" value="Cập nhật" />
+                            }
+                        </td>
+                        <td>@item._product.PRICE</td>
+                        <td>@onepro.ToString("#,##0").Replace(',', '.')</td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <a href> Miễn phí giao hàng trong khu vực có bán kính dưới 5km</a> <br>
+        <a href> Hỗ trợ trả góp qua thẻ tín dụng TP Bank, tải app về ngay hôm nay!</a>
+    </div><strong style="font-size:50px">Giá</strong>
+    <span style="float:right;font-size:50px">@Model.Total_money().ToString("#,##0").Replace(',', '.')đ</span>
+</div>
+    
+}
+    else
+    {
+    <a href = "@Url.Action("ProductList_crumb","PRODUCTs")" > Tiếp tục mua hàng</a>
+    <h4> Giỏ hàng rỗng!Xin mời tiếp tục mua hàng </h4>
+    }
+
+
+

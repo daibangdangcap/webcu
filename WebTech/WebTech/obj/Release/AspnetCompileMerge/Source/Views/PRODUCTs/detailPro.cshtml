@@ -1,0 +1,134 @@
+﻿@model WebTech.Models.DETAIL
+@{
+    ViewBag.Title = "detailPro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/MyCss/Product.css" type="text/css" rel="stylesheet" />
+<link href="~/MyCss/Crumb.css" type="text/css" rel="stylesheet" />
+<div class="crumb">
+    <ul>
+        <li>
+
+            <a href="@Url.Action("TrangChu","Home")">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                    <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z" />
+                </svg> Trang chủ
+            </a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+            </svg>
+            <a href="@Url.Action("Productlist_crumb","PRODUCTs",new { SearchString=Session["NAMECATE"]})">@Session["NAMECATE"]</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+            </svg>
+            <a href="@Url.Action("detailPro","PRODUCTs",new { id=Model.PRODUCT.NAME_PRO })">@Model.PRODUCT.NAME_PRO</a>
+
+        </li>
+    </ul>
+</div>
+<div>
+    <div class="Container">
+        <!--Slider-->
+        <div class="indexstyle">
+            <div class="image">
+                <div class="mySlides"><img id="myimage" src="~/Images/@Model.PRODUCT.IMAGE" style="width: 370px; height: 370px;"></div>
+                <div class="mySlides"><img id="myimage" src="~/Images/@Model.PRODUCT.IMAGEL" style="width: 370px; height: 370px;"></div>
+                <div class="mySlides"><img id="myimage" src="~/Images/@Model.PRODUCT.IMAGER" style="width: 370px; height: 370px;"></div>
+            </div>
+
+            <div class="images">
+                <div id="image_1"><img class="img" src="~/Images/@Model.PRODUCT.IMAGE" onclick="currentSlide(1)"></div>
+                <div id="image_2"><img class="img" src="~/Images/@Model.PRODUCT.IMAGEL" onclick="currentSlide(2)"></div>
+                <div id="image_3"><img class="img" src="~/Images/@Model.PRODUCT.IMAGER" onclick="currentSlide(3)"></div>
+            </div>
+            <script>
+                var slideIndex = 1;
+                showSlides(slideIndex);
+                function plusSlides(n) {
+                    showSlides(slideIndex += n);
+                }
+                function currentSlide(n) {
+                    showSlides(slideIndex = n);
+                }
+                function showSlides(n) {
+                    var i;
+                    var slides = document.getElementsByClassName("mySlides");
+                    var dots = document.getElementsByClassName("img");
+                    if (n > slides.length) { slideIndex = 1 }
+                    if (n < 1) { slideIndex = slides.length }
+                    for (i = 0; i < slides.length; i++) {
+                        slides[i].style.display = "none";
+                    }
+                    for (i = 0; i < dots.length; i++) {
+                        dots[i].className = dots[i].className.replace(" active", "");
+                    }
+                    slides[slideIndex - 1].style.display = "block";
+                    dots[slideIndex - 1].className += " active";
+                }
+            </script>
+        </div>
+        <!--THÔNG TIN SP-->
+        <div class="indexstyle_1">
+            <div class="title">
+                <h1>@Model.PRODUCT.NAME_PRO</h1>
+            </div>
+            <div class="sanpham">
+                <div class="gia">
+                    <p><strong>@Model.PRODUCT.PRICE.ToString("#,##0").Replace(',', '.')<sup><u>đ</u></sup></strong> </p>
+                </div>
+                <!--CHỈNH SL-->
+
+                <div class="muangay"><a style="color:white; text-decoration:none;" href="@Url.Action("AddToCart","ShoppingCarts",new {name_pro=Model.PRODUCT.NAME_PRO,username=Session["USERNAME"]})">MUA NGAY</a></div>
+            </div>
+            <div class="banquyen">
+                <div class="thongtin">
+                    <strong><p style="font-size:25px; margin-top:10px; text-align: center;">THÔNG SỐ SẢN PHẨM</p></strong>
+
+                    <table class="table table-bordered">
+                        <tr class="row1">
+                            <th>Loại sản phẩm: </th>
+                            <td>@Html.DisplayFor(model => model.NAME_CATE)</td>
+                        </tr>
+                        <tr class="row2">
+                            <th>Hệ điều hành: </th>
+                            <td>@Html.DisplayFor(model => model.HEDIEUHANH)</td>
+                        </tr>
+                        <tr class="row1">
+                            <th>Kích thước: </th>
+                            <td>@Html.DisplayFor(model => model.SIZE)</td>
+                        </tr>
+                        <tr class="row2">
+                            <th>Cân nặng: </th>
+                            <td>@Html.DisplayFor(model => model.WEIGHT)</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="khuyenmai">
+                    <p><i class="fa fa-diamond"></i>Nhập mã "VNPAYFA50": Giảm 50% - Nhập mã tại App Banking</p>
+                    <p><i class="fa fa-diamond"></i>Hoàn 50%, tối đa 100K, thanh toán qua ví Moca</p>
+                    <p><i class="fa fa-diamond"></i>Nhập mã "AIRPAYALL", Giảm ngay 10%, đơn hàng từ 0đ, thanh toán qua ví AirPay</p>
+                    <p><i class="fa fa-diamond"></i>Giảm thêm 20% cho các thành viên của Zone14</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <img src="~/Banner/lưu (3).png" width="100%">
+
+    <script>
+        var i = 1;
+        documdocum.write('so_luong').value = i;
+        function giam() {
+            if (i <= 50 && i > 1) {
+                i--;
+                document.getElementById('so_luong').value = i;
+            }
+        }
+        function tang() {
+            if (i >= 1 && i < 50) {
+                i++;
+                document.getElementById('so_luong').value = i;
+            }
+        }
+
+    </script>

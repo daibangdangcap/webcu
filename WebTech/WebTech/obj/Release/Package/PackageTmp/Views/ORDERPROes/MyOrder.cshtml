@@ -1,0 +1,47 @@
+﻿@model IEnumerable<WebTech.Models.ORDERPRO>
+
+
+<table class="table">
+    <tr>
+        <th>
+            TÊN KHÁCH HÀNG
+        </th>
+        <th>
+            SỐ ĐIỆN THOẠI
+        </th>
+        <th>
+           ĐỊA CHỈ
+        </th>
+        <th>
+            NGÀY ĐẶT HÀNG
+        </th>
+        <th>
+            TỔNG TIỀN
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NAMECUSTOMER)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SDT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ORDER_ADDRESS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DATEORDER)
+        </td>
+        <td>
+            @item.PRICE
+        </td>
+        <td>
+            <a href="@Url.Action("OrderDetail","ORDERDETAILs",new { id=item.ID_ORDER})">Xem chi tiết đơn hàng</a>
+        </td>
+    </tr>
+}
+
+</table>

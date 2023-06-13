@@ -1,0 +1,32 @@
+﻿@model WebTech.Models.CUSTOMER
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/MyCss/Information.css" rel="stylesheet" type="text/css" />
+<div class="platform">
+    <div class="text-title" style="border-bottom: 1.5px solid rgb(170, 169, 169);">
+        <img src="https://portal.huflit.edu.vn/Content/images/customer-SV.png" style="float: left; width:50px;">
+        <p style="float: left; padding-left: 50px;margin-left:20px; padding-top:12px;">@Html.DisplayFor(model => model.NAME_CUS)</p>
+        
+    </div>
+    <div style="padding: 10px 40px 0px 40px;">
+        <div style="border-bottom: 1.5px solid rgb(170, 169, 169);">
+            <h2 style="padding-left: 5px; padding-top:12px;">Thông tin người dùng</h2>
+            <p class="descript">Địa chỉ: @Html.DisplayFor(model => model.ADDRESS)</p>
+            <p class="descript">Email: @Html.DisplayFor(model => model.EMAIL)</p>
+            <p class="descript">Số điện thoại: @Html.DisplayFor(model => model.SDT)</p>
+        </div>
+
+        <div>
+            <h2 style="padding-left: 5px; padding-top: 12px;">Thông tin tài khoản</h2>
+            <p class="descript">Tên tài khoản đăng nhập: @Html.DisplayFor(model => model.USERNAME)</p>
+            <p class="descript">Mật khẩu: @Html.DisplayFor(model => model.PASSWORD)</p>
+        </div>
+    </div>
+    
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

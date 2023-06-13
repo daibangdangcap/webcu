@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBTechModelStoreContainer" CdmEntityContainer="DBTechEntities">
+    <EntitySetMapping Name="CATEGORies">
+      <EntityTypeMapping TypeName="DBTechModel.CATEGORY">
+        <MappingFragment StoreEntitySet="CATEGORY">
+          <ScalarProperty Name="NAME_CATE" ColumnName="NAME_CATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CUSTOMERs">
+      <EntityTypeMapping TypeName="DBTechModel.CUSTOMER">
+        <MappingFragment StoreEntitySet="CUSTOMER">
+          <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME_CUS" ColumnName="NAME_CUS" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ORDERPROes">
+      <EntityTypeMapping TypeName="DBTechModel.ORDERPRO">
+        <MappingFragment StoreEntitySet="ORDERPRO">
+          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+          <ScalarProperty Name="NAMECUSTOMER" ColumnName="NAMECUSTOMER" />
+          <ScalarProperty Name="ID_ORDER" ColumnName="ID_ORDER" />
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="ORDER_ADDRESS" ColumnName="ORDER_ADDRESS" />
+          <ScalarProperty Name="DATEORDER" ColumnName="DATEORDER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRODUCTs">
+      <EntityTypeMapping TypeName="DBTechModel.PRODUCT">
+        <MappingFragment StoreEntitySet="PRODUCT">
+          <ScalarProperty Name="IMAGER" ColumnName="IMAGER" />
+          <ScalarProperty Name="IMAGEL" ColumnName="IMAGEL" />
+          <ScalarProperty Name="ID_PRO" ColumnName="ID_PRO" />
+          <ScalarProperty Name="NAME_PRO" ColumnName="NAME_PRO" />
+          <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
+          <ScalarProperty Name="NAME_CATE" ColumnName="NAME_CATE" />
+          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+          <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ORDERDETAILs">
+      <EntityTypeMapping TypeName="DBTechModel.ORDERDETAIL">
+        <MappingFragment StoreEntitySet="ORDERDETAIL">
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="IDOrder" ColumnName="IDOrder" />
+          <ScalarProperty Name="IDProduct" ColumnName="IDProduct" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DETAILS">
+      <EntityTypeMapping TypeName="DBTechModel.DETAIL">
+        <MappingFragment StoreEntitySet="DETAILS">
+          <ScalarProperty Name="WEIGHT" ColumnName="WEIGHT" />
+          <ScalarProperty Name="SIZE" ColumnName="SIZE" />
+          <ScalarProperty Name="HEDIEUHANH" ColumnName="HEDIEUHANH" />
+          <ScalarProperty Name="NAME_CATE" ColumnName="NAME_CATE" />
+          <ScalarProperty Name="ID_PRO" ColumnName="ID_PRO" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ADMINUSERs">
+      <EntityTypeMapping TypeName="DBTechModel.ADMINUSER">
+        <MappingFragment StoreEntitySet="ADMINUSER">
+          <ScalarProperty Name="ROLLUSER" ColumnName="ROLLUSER" />
+          <ScalarProperty Name="PASSWORD_AD" ColumnName="PASSWORD_AD" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="USER_AD" ColumnName="USER_AD" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ROLEUSERs">
+      <EntityTypeMapping TypeName="DBTechModel.ROLEUSER">
+        <MappingFragment StoreEntitySet="ROLEUSER">
+          <ScalarProperty Name="ROLE" ColumnName="ROLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,60 @@
+﻿@model WebTech.Models.ADMINUSER
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="form-group">
+            TÊN TÀI KHOẢN
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.USER_AD, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.USER_AD, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            HỌ VÀ TÊN
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NAME, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            MẬT KHẨU
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PASSWORD_AD, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PASSWORD_AD, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            CHỨC NĂNG
+            <div class="col-md-10">
+                @Html.DropDownList("ROLLUSER", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ROLLUSER, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <a href="@Url.Action("Details","ADMINUSERs",new { id=Model.ID})">Quay về</a>
+</div>

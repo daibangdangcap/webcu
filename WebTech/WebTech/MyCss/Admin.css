@@ -1,0 +1,29 @@
+﻿
+.afheader {
+    margin-top:-50px;
+    padding: 2%;
+    background-color: rgb(216, 216, 216);
+    text-transform: uppercase;
+    color: rgb(43, 43, 43);
+    font-weight: 400;
+}
+
+    .afheader p {
+        padding: 1%;
+        background-color: rgb(216, 216, 216);
+        text-transform: uppercase;
+        font-size: 30px;
+        color: rgb(43, 43, 43);
+        background-color: rgb(216, 216, 216)
+    }
+
+    .afheader button {
+        text-transform: uppercase;
+        margin-top: 1%;
+        background-color: rgb(34, 29, 29);
+        float: right;
+        color: aliceblue;
+        border-radius: 40px;
+        height: 50px;
+        text-decoration:none;
+    }

@@ -1,0 +1,37 @@
+﻿@model IEnumerable<WebTech.Models.CATEGORY>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<link href="~/MyCss/Admin.css" rel="stylesheet" type="text/css" />
+
+<div class="afheader">
+    <button><a href="@Url.Action("Create","CATEGORies")" style="text-decoration: none; color: aliceblue;">THÊM LOẠI SP</a></button>
+    <p>  QUẢN LÝ LOẠI SẢN PHẨM</p>
+</div>
+<div class="mid">
+    <table class="table">
+        <tr>
+            <th>
+                Loại sản phẩm
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NAME_CATE)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.NAME_CATE }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.NAME_CATE }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.NAME_CATE })
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>

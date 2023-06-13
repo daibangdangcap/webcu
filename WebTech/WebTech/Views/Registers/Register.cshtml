@@ -1,0 +1,113 @@
+﻿@model WebTech.Models.Register
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="~/MyCss/Register.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zone14 | Đăng Ký</title>
+    
+</head>
+<body>
+    
+    <div class="container">
+
+        @using (Html.BeginForm("Register", "Registers", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="textHeading">
+
+                <div style="float: right; ">
+                    <a href="@Url.Action("TrangChu", "Home")">
+                        <svg xmlns="http://www.w3.org/2000/svg" style="color:black;" width="20px" height="20px" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                        </svg>
+                    </a>
+                </div>
+                <div>
+                    <a href="@Url.Action("Login", "Registers")" style="color:black; text-decoration: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" style="color:black;" width="20px" height="20px" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16" style="float: left;">
+                            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                        </svg>
+                    </a>
+                    <span style="margin-left:20px">Đăng Ký Tài Khoản</span>
+                </div>
+            </div>
+            <img src="~/Image2/LOGO - TRẮNG.png" width="100px" style="margin-left:100px ; display: flex;">
+            <div class="user-details">
+                <div class="input-box">
+                    <hr />
+                    <div class="details">
+                        <span class="details">Họ và tên</span>
+                        <br />
+                        <div>
+                            @Html.EditorFor(model => model.NAME_CUS, new { htmlAttributes = new { @placeholder = "Nhập họ tên" } })
+                            @Html.ValidationMessageFor(model => model.NAME_CUS,"",new { @class="text-danger"})<br /><br />
+                        </div>
+                    </div>
+                    <div class="details">
+                        <span class="details">Email</span>
+                        <br />
+                        <div>
+                            @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @placeholder = "Nhập email" }  })
+                            @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })<br /><br />
+                        </div>
+                    </div>
+                    <div class="details">
+                        <span class="details">Địa chỉ</span>
+                        <br />
+                        <div>
+                            @Html.EditorFor(model => model.ADDRESS, new { htmlAttributes = new { @placeholder = "Nhập địa chỉ" }  })
+                            @Html.ValidationMessageFor(model => model.ADDRESS, "", new { @class = "text-danger" })<br /><br />
+                        </div>
+                    </div>
+
+                    <div class="details">
+                        <span class="details">SĐT</span>
+                        <br />
+                        <div>
+                            @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @placeholder = "Nhập SĐT" }  })
+                            @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })<br /><br />
+                        </div>
+                    </div>
+
+                    <div class="details">
+                        <span class="details">Tên đăng nhập</span>
+                        <br />
+                        <div>
+                            @Html.EditorFor(model => model.USERNAME, new { htmlAttributes = new {@placeholder="Nhập tên đăng nhập" } })
+                            @Html.ValidationMessageFor(model => model.USERNAME, "", new { @class = "text-danger" })<br /><br />
+                        </div>
+                    </div>
+
+                    <div class="details">
+                        <span class="details">Mật khẩu</span>
+                        <br />
+                        <div>
+                            @Html.EditorFor(model => model.PASSWORD, new { htmlAttributes = new {@placeholder="Nhập mật khẩu" } })
+                            @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger", @type = "password" })<br /><br />
+                        </div>
+                    </div>
+
+                    <input type="submit" value="Đăng Ký" class="register-submit">
+                </div>
+            </div>
+         }
+
+    </div>
+
+
+</body>
+</html>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

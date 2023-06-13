@@ -1,0 +1,70 @@
+﻿@model IEnumerable<WebTech.Models.CUSTOMER>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<link href="~/MyCss/Admin.css" rel="stylesheet" type="text/css" />
+
+<div class="afheader">
+    <button><a href="@Url.Action("Create","CUSTOMERs")" style="text-decoration: none; color: aliceblue;">THÊM NGƯỜI DÙNG</a></button>
+    <p>  QUẢN LÝ KHÁCH HÀNG</p>
+</div>
+<div class="mid">
+    <table class="table">
+        <tr>
+            <th>
+                Ảnh đại diện
+            </th>
+            <th>
+                Tên tài khoản
+            </th>
+            <th>
+                Tên khách hàng
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Địa chỉ
+            </th>
+            <th>
+                SĐT
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="~/AnhDD/@item.IMAGE" width="50px" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.USERNAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NAME_CUS)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EMAIL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ADDRESS)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SDT)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.ID })
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

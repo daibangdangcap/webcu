@@ -1,0 +1,57 @@
+﻿@model WebTech.Models.ADMINUSER
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ADMINUSER</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.USER_AD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USER_AD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PASSWORD_AD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PASSWORD_AD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ROLEUSER.ROLE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ROLEUSER.ROLE)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

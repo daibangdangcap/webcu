@@ -1,0 +1,71 @@
+﻿@model IEnumerable<WebTech.Models.ORDERPRO>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/MyCss/Admin.css" rel="stylesheet" type="text/css" />
+
+<div class="afheader">
+    <p>  QL ĐƠN HÀNG</p>
+</div>
+<div class="mid">
+    <table class="table">
+        <tr>
+            <th>
+                Mã đơn hàng
+            </th>
+            <th>
+                Tên tài khoản
+            </th>
+            <th>
+                Tên khách hàng
+            </th>
+            <th>
+                Số điện thoại
+            </th>
+            <th>
+                Địa chỉ giao hàng
+            </th>
+            <th>
+                Ngày đặt hàng
+            </th>
+            <th>
+                Tổng giá tiền
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_ORDER)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.USERNAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NAMECUSTOMER)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SDT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ORDER_ADDRESS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DATEORDER)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRICE)
+        </td>
+        <td>
+            <a href="@Url.Action("Index","ORDERDETAILs",new { id=item.ID_ORDER})">Xem chi tiết đơn hàng</a>
+        </td>
+        <td>@Html.ActionLink("Delete","Delete",new { id=item.ID_ORDER})</td>
+    </tr>
+        }
+
+    </table>
+</div>
